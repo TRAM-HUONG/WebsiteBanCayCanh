@@ -6,13 +6,9 @@ RUN mvn dependency:go-offline
 COPY . .
 RUN mvn clean package -DskipTests
 
-# --- Bước 2: Chạy app ---
+# --- Bước 2: Run WAR ---
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
-
-# copy đúng file .jar từ target
-COPY --from=build /app/target/WebsiteBanCayCanh-0.0.1-SNAPSHOT.jar app.jar
-
-# chạy app
+COPY --from=build /app/target/*.war app.war
 EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.war"]
