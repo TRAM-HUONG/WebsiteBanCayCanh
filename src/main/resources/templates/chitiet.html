@@ -1,130 +1,148 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- 🌿 SEO -->
-  <title th:text="${sp.tenSP} + ' | Thiên Nhiên Garden - Cây Cảnh & Hoa Tươi'">Chi tiết sản phẩm</title>
-  <meta name="description" th:content="${sp.moTa}">
-  <meta name="keywords" content="cây cảnh, hoa tươi, cây phong thủy, cây để bàn, cây văn phòng, phân bón, Thiên Nhiên Garden">
-  <meta name="author" content="Nhóm Java Spring Boot">
+<!-- 🌿 SEO -->
+<title
+	th:text="${sp.tenSP} + ' | Thiên Nhiên Garden - Cây Cảnh & Hoa Tươi'">Chi
+	tiết sản phẩm</title>
+<meta name="description" th:content="${sp.moTa}">
+<meta name="keywords"
+	content="cây cảnh, hoa tươi, cây phong thủy, cây để bàn, cây văn phòng, phân bón, Thiên Nhiên Garden">
+<meta name="author" content="Nhóm Java Spring Boot">
 
-  <!-- 🌸 OPEN GRAPH -->
-  <meta property="og:type" content="product">
-  <meta property="og:locale" content="vi_VN">
-  <meta property="og:site_name" content="Thiên Nhiên Garden">
-  <meta property="og:title" th:content="${sp.tenSP}">
-  <meta property="og:description" th:content="${sp.moTa}">
-  <meta property="og:image" th:content="@{'http://localhost:8080/images/' + ${sp.anhChinh}}">
-  <meta property="og:url" th:content="@{'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP}}">
+<!-- 🌸 OPEN GRAPH -->
+<meta property="og:type" content="product">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Thiên Nhiên Garden">
+<meta property="og:title" th:content="${sp.tenSP}">
+<meta property="og:description" th:content="${sp.moTa}">
+<meta property="og:image"
+	th:content="@{'http://localhost:8080/images/' + ${sp.anhChinh}}">
+<meta property="og:url"
+	th:content="@{'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP}}">
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-WRE8MBQ5W6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  <!-- ✅ CSS -->
-  <link rel="stylesheet" th:href="@{/css/chitiet.css}">
-  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  gtag('config', 'G-WRE8MBQ5W6');
+</script>
+<!-- ✅ CSS -->
+<link rel="stylesheet" th:href="@{/css/chitiet.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
 </head>
 
 <body>
-  <!-- ==== HEADER ==== -->
-  <header class="hdr">
-    <div class="hdr-left">
-      <a href="/" class="logo">
-        <img src="/images/logo.jpg" alt="Logo Thiên Nhiên Garden" class="logo-img">
-        <h1>Thiên Nhiên Garden</h1>
-      </a>
-      <nav class="hnav">
-        <a href="/">Trang chủ</a>
-        <a href="/sanpham" class="active">Sản phẩm</a>
-        <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a>
-        <a href="/gioithieu">Giới thiệu</a>
-        <a href="/lienhe">Liên hệ</a>
-      </nav>
-    </div>
+	<!-- ==== HEADER ==== -->
+	<header class="hdr">
+		<div class="hdr-left">
+			<a href="/" class="logo"> <img src="/images/logo.jpg"
+				alt="Logo Thiên Nhiên Garden" class="logo-img">
+				<h1>Thiên Nhiên Garden</h1>
+			</a>
+			<nav class="hnav">
+				<a href="/">Trang chủ</a> <a href="/sanpham" class="active">Sản
+					phẩm</a> <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a> <a
+					href="/gioithieu">Giới thiệu</a> <a href="/lienhe">Liên hệ</a>
+			</nav>
+		</div>
 
-    <form class="search" method="get" action="/sanpham">
-      <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
-      <button type="submit">Tìm</button>
-    </form>
+		<form class="search" method="get" action="/sanpham">
+			<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+			<button type="submit">Tìm</button>
+		</form>
 
-    <div class="hdr-right">
-      <a th:if="${session.tenDangNhap == null}" href="/dangnhap" class="login-link">Đăng nhập</a>
-      <div th:if="${session.tenDangNhap != null}" class="user-info">
-        <div class="avatar" th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
-        <span class="username" th:text="${session.tenDangNhap}"></span>
-        <a href="/dangxuat" class="logout">Đăng xuất</a>
-      </div>
-    </div>
-  </header>
+		<div class="hdr-right">
+			<a th:if="${session.tenDangNhap == null}" href="/dangnhap"
+				class="login-link">Đăng nhập</a>
+			<div th:if="${session.tenDangNhap != null}" class="user-info">
+				<div class="avatar"
+					th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+				<span class="username" th:text="${session.tenDangNhap}"></span> <a
+					href="/dangxuat" class="logout">Đăng xuất</a>
+			</div>
+		</div>
+	</header>
 
-  <!-- ==== BANNER ==== -->
-  <section class="slider">
-    <div class="slides">
-      <img src="/images/banner1.jpg" class="active" alt="Cây cảnh phong thủy">
-      <img src="/images/banner2.jpg" alt="Hoa tươi tặng người thân">
-      <img src="/images/banner3.jpg" alt="Phân bón & phụ kiện làm vườn">
-    </div>
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </section>
+	<!-- ==== BANNER ==== -->
+	<section class="slider">
+		<div class="slides">
+			<img src="/images/banner1.jpg" class="active"
+				alt="Cây cảnh phong thủy"> <img src="/images/banner2.jpg"
+				alt="Hoa tươi tặng người thân"> <img src="/images/banner3.jpg"
+				alt="Phân bón & phụ kiện làm vườn">
+		</div>
+		<div class="dots">
+			<span class="dot active"></span> <span class="dot"></span> <span
+				class="dot"></span>
+		</div>
+	</section>
 
-  <!-- ==== CHI TIẾT SẢN PHẨM ==== -->
-  <section class="product-detail">
-    <div class="gallery">
-      <img id="mainImage" class="main-img" th:src="@{'/images/' + ${sp.anhChinh}}" th:alt="${sp.tenSP}">
-      <div class="thumbs">
-        <img class="thumb-small" th:each="img : ${hinhAnhs}"
-             th:src="@{'/images/' + ${img.tenHinh}}" th:alt="${sp.tenSP}"
-             onclick="changeImage(this.src)">
-      </div>
-    </div>
+	<!-- ==== CHI TIẾT SẢN PHẨM ==== -->
+	<section class="product-detail">
+		<div class="gallery">
+			<img id="mainImage" class="main-img"
+				th:src="@{'/images/' + ${sp.anhChinh}}" th:alt="${sp.tenSP}">
+			<div class="thumbs">
+				<img class="thumb-small" th:each="img : ${hinhAnhs}"
+					th:src="@{'/images/' + ${img.tenHinh}}" th:alt="${sp.tenSP}"
+					onclick="changeImage(this.src)">
+			</div>
+		</div>
 
-    <div class="info">
-      <h2 th:text="${sp.tenSP}"></h2>
-      <p class="price" th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')} + ' đ'"></p>
-      <p class="desc" th:text="${sp.moTa}"></p>
+		<div class="info">
+			<h2 th:text="${sp.tenSP}"></h2>
+			<p class="price"
+				th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')} + ' đ'"></p>
+			<p class="desc" th:text="${sp.moTa}"></p>
 
-      <div class="buttons">
-        <form th:action="@{/giohang/them}" method="post">
-          <input type="hidden" name="maSP" th:value="${sp.maSP}">
-          <input type="hidden" name="maKH" th:value="${session.maKH}">
-          <input type="hidden" name="soLuong" value="1">
-          <button type="submit" class="btn cart">🛒 Thêm giỏ</button>
-        </form>
+			<div class="buttons">
+				<form th:action="@{/giohang/them}" method="post">
+					<input type="hidden" name="maSP" th:value="${sp.maSP}"> <input
+						type="hidden" name="maKH" th:value="${session.maKH}"> <input
+						type="hidden" name="soLuong" value="1">
+					<button type="submit" class="btn cart">🛒 Thêm giỏ</button>
+				</form>
 
-        <form th:action="@{/giohang/muangay}" method="post">
-          <input type="hidden" name="maSP" th:value="${sp.maSP}">
-          <input type="hidden" name="maKH" th:value="${session.maKH}">
-          <input type="hidden" name="soLuong" value="1">
-          <button type="submit" class="btn buy">⚡ Mua ngay</button>
-        </form>
-      </div>
+				<form th:action="@{/giohang/muangay}" method="post">
+					<input type="hidden" name="maSP" th:value="${sp.maSP}"> <input
+						type="hidden" name="maKH" th:value="${session.maKH}"> <input
+						type="hidden" name="soLuong" value="1">
+					<button type="submit" class="btn buy">⚡ Mua ngay</button>
+				</form>
+			</div>
 
-      <!-- CHIA SẺ -->
-      <div class="share-box">
-        <span>Chia sẻ:</span>
-        <a href="#" class="share fb"
-           th:attr="onclick='shareFB(\'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP} + '\')'">
-          <img src="/images/icon_fb.png" alt="Facebook">
-        </a>
-        <a href="#" class="share tiktok"
-           th:attr="onclick='shareTikTok(\'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP} + '\')'">
-          <img src="/images/icon_tiktok.png" alt="TikTok">
-        </a>
-        <span class="copy-link" th:data-url="@{'/sanpham/chi-tiet/' + ${sp.maSP}}" onclick="copyLink(this)">📋 Sao chép link</span>
-      </div>
-    </div>
-  </section>
+			<!-- CHIA SẺ -->
+			<div class="share-box">
+				<span>Chia sẻ:</span> <a href="#" class="share fb"
+					th:attr="onclick='shareFB(\'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP} + '\')'">
+					<img src="/images/icon_fb.png" alt="Facebook">
+				</a> <a href="#" class="share tiktok"
+					th:attr="onclick='shareTikTok(\'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP} + '\')'">
+					<img src="/images/icon_tiktok.png" alt="TikTok">
+				</a> <span class="copy-link"
+					th:data-url="@{'/sanpham/chi-tiet/' + ${sp.maSP}}"
+					onclick="copyLink(this)">📋 Sao chép link</span>
+			</div>
+		</div>
+	</section>
 
-  <!-- ==== FOOTER ==== -->
-  <footer class="ftr">
-    © 2025 Thiên Nhiên Garden 🌱 | <a href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
-  </footer>
+	<!-- ==== FOOTER ==== -->
+	<footer class="ftr">
+		© 2025 Thiên Nhiên Garden 🌱 | <a
+			href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
+	</footer>
 
-  <!-- ==== SCRIPT ==== -->
-  <script>
+	<!-- ==== SCRIPT ==== -->
+	<script>
     // Đổi ảnh chính
     function changeImage(src) {
       document.getElementById("mainImage").src = src;

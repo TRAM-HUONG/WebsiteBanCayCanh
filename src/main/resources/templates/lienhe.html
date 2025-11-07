@@ -1,101 +1,121 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>🌿 Liên hệ | Thiên Nhiên Garden</title>
-  <meta name="description" content="Liên hệ Thiên Nhiên Garden - Cây cảnh, hoa tươi, phân bón và phụ kiện làm vườn.">
-  <meta name="keywords" content="liên hệ, cây cảnh, hoa tươi, phân bón, thiên nhiên garden">
-  <meta name="author" content="Nhóm Java Spring Boot">
-  
-  <!-- ✅ CSS chung -->
-  <link rel="stylesheet" th:href="@{/css/index.css}">
-  <link rel="stylesheet" th:href="@{/css/lienhe.css}">
-  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>🌿 Liên hệ | Thiên Nhiên Garden</title>
+<meta name="description"
+	content="Liên hệ Thiên Nhiên Garden - Cây cảnh, hoa tươi, phân bón và phụ kiện làm vườn.">
+<meta name="keywords"
+	content="liên hệ, cây cảnh, hoa tươi, phân bón, thiên nhiên garden">
+<meta name="author" content="Nhóm Java Spring Boot">
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-WRE8MBQ5W6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRE8MBQ5W6');
+</script>
+<!-- ✅ CSS chung -->
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<link rel="stylesheet" th:href="@{/css/lienhe.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
 </head>
 
 <body>
-  <!-- ==== HEADER ==== -->
-  <header class="hdr">
-    <div class="hdr-left">
-      <a href="/" class="logo">
-        <img src="/images/logo.jpg" alt="Logo Cây Cảnh" class="logo-img">
-        <h1>Thiên Nhiên Garden</h1>
-      </a>
-      <nav class="hnav">
-        <a href="/">Trang chủ</a>
-        <a href="/sanpham">Sản phẩm</a>
-        <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a>
-        <a href="/gioithieu">Giới thiệu</a>
-        <a href="/lienhe" class="active">Liên hệ</a>
-      </nav>
-    </div>
+	<!-- ==== HEADER ==== -->
+	<header class="hdr">
+		<div class="hdr-left">
+			<a href="/" class="logo"> <img src="/images/logo.jpg"
+				alt="Logo Cây Cảnh" class="logo-img">
+				<h1>Thiên Nhiên Garden</h1>
+			</a>
+			<nav class="hnav">
+				<a href="/">Trang chủ</a> <a href="/sanpham">Sản phẩm</a> <a
+					th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a> <a
+					href="/gioithieu">Giới thiệu</a> <a href="/lienhe" class="active">Liên
+					hệ</a>
+			</nav>
+		</div>
 
-    <form class="search" method="get" action="/sanpham">
-      <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
-      <button type="submit">Tìm</button>
-    </form>
+		<form class="search" method="get" action="/sanpham">
+			<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+			<button type="submit">Tìm</button>
+		</form>
 
-    <div class="hdr-right">
-      <a th:if="${session.tenDangNhap == null}" href="/dangnhap" class="login-link">Đăng nhập</a>
-      <div th:if="${session.tenDangNhap != null}" class="user-info">
-        <div class="avatar" th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
-        <span class="username" th:text="${session.tenDangNhap}"></span>
-        <a href="/dangxuat" class="logout">Đăng xuất</a>
-      </div>
-    </div>
-  </header>
+		<div class="hdr-right">
+			<a th:if="${session.tenDangNhap == null}" href="/dangnhap"
+				class="login-link">Đăng nhập</a>
+			<div th:if="${session.tenDangNhap != null}" class="user-info">
+				<div class="avatar"
+					th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+				<span class="username" th:text="${session.tenDangNhap}"></span> <a
+					href="/dangxuat" class="logout">Đăng xuất</a>
+			</div>
+		</div>
+	</header>
 
-  <!-- ==== BANNER ==== -->
-  <section class="slider">
-    <div class="slides">
-      <img src="/images/banner1.jpg" class="active" alt="Cây cảnh phong thủy">
-      <img src="/images/banner2.jpg" alt="Hoa tươi tặng người thân">
-      <img src="/images/banner3.jpg" alt="Phân bón & phụ kiện làm vườn">
-    </div>
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </section>
+	<!-- ==== BANNER ==== -->
+	<section class="slider">
+		<div class="slides">
+			<img src="/images/banner1.jpg" class="active"
+				alt="Cây cảnh phong thủy"> <img src="/images/banner2.jpg"
+				alt="Hoa tươi tặng người thân"> <img src="/images/banner3.jpg"
+				alt="Phân bón & phụ kiện làm vườn">
+		</div>
+		<div class="dots">
+			<span class="dot active"></span> <span class="dot"></span> <span
+				class="dot"></span>
+		</div>
+	</section>
 
-  <!-- ==== NỘI DUNG LIÊN HỆ ==== -->
-  <section class="contact-section">
-    <div class="contact-info">
-      <h2>📍 Thông tin liên hệ</h2>
-      <p><b>Địa chỉ:</b> 12 Nguyễn Huệ, Quận 1, TP.HCM</p>
-      <p><b>Email:</b> support@thiennhiengarden.vn</p>
-      <p><b>Hotline:</b> <a href="tel:0905123456">0905 123 456</a></p>
+	<!-- ==== NỘI DUNG LIÊN HỆ ==== -->
+	<section class="contact-section">
+		<div class="contact-info">
+			<h2>📍 Thông tin liên hệ</h2>
+			<p>
+				<b>Địa chỉ:</b> 12 Nguyễn Huệ, Quận 1, TP.HCM
+			</p>
+			<p>
+				<b>Email:</b> support@thiennhiengarden.vn
+			</p>
+			<p>
+				<b>Hotline:</b> <a href="tel:0905123456">0905 123 456</a>
+			</p>
 
-      <div class="social-links">
-        <a href="https://facebook.com" target="_blank">🌐 Facebook</a>
-        <a href="https://zalo.me" target="_blank">💬 Zalo</a>
-        <a href="https://tiktok.com" target="_blank">🎵 TikTok</a>
-      </div>
-    </div>
+			<div class="social-links">
+				<a href="https://facebook.com" target="_blank">🌐 Facebook</a> <a
+					href="https://zalo.me" target="_blank">💬 Zalo</a> <a
+					href="https://tiktok.com" target="_blank">🎵 TikTok</a>
+			</div>
+		</div>
 
-    <div class="contact-form">
-      <h2>✉️ Gửi tin nhắn cho chúng tôi</h2>
-      <form>
-        <input type="text" placeholder="Họ tên của bạn" required>
-        <input type="email" placeholder="Email của bạn" required>
-        <input type="text" placeholder="Số điện thoại">
-        <textarea rows="4" placeholder="Nội dung liên hệ..." required></textarea>
-        <button type="submit">Gửi ngay</button>
-      </form>
-    </div>
-  </section>
+		<div class="contact-form">
+			<h2>✉️ Gửi tin nhắn cho chúng tôi</h2>
+			<form>
+				<input type="text" placeholder="Họ tên của bạn" required> <input
+					type="email" placeholder="Email của bạn" required> <input
+					type="text" placeholder="Số điện thoại">
+				<textarea rows="4" placeholder="Nội dung liên hệ..." required></textarea>
+				<button type="submit">Gửi ngay</button>
+			</form>
+		</div>
+	</section>
 
-  <!-- ==== FOOTER ==== -->
-  <footer class="ftr">
-    © 2025 Website Cây Cảnh - Thiết kế bởi <b>Nhóm Java</b> 🌱 |
-    <a href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
-  </footer>
+	<!-- ==== FOOTER ==== -->
+	<footer class="ftr">
+		© 2025 Website Cây Cảnh - Thiết kế bởi <b>Nhóm Java</b> 🌱 | <a
+			href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
+	</footer>
 
-  <!-- ==== JS BANNER ==== -->
-  <script>
+	<!-- ==== JS BANNER ==== -->
+	<script>
     let index = 0;
     const slides = document.querySelectorAll('.slides img');
     const dots = document.querySelectorAll('.dot');
