@@ -1,0 +1,342 @@
+:root {
+  --green: #2e7d32;
+  --light-green: #e8f5e9;
+  --pink: #e91e63;
+  --yellow: #ffeb3b;
+}
+
+/* ==== TOÀN TRANG ==== */
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #f7f9f5;
+  margin: 0;
+  color: #333;
+}
+
+/* ==== HEADER ==== */
+.hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #4caf50;
+  padding: 10px 40px;
+  color: white;
+}
+.hdr-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 40px;
+}
+.logo-img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.logo h1 {
+  font-family: 'Parisienne', cursive;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 400;
+  margin: 0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+.logo h1:hover {
+  color: #ffe066;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+/* ==== MENU ==== */
+.hnav {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 30px;
+}
+.hnav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.hnav a:hover, .hnav a.active {
+  color: #ffeb3b;
+}
+
+/* ==== SEARCH ==== */
+.search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.search input {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.search button {
+  background-color: var(--yellow);
+  color: var(--green);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.search button:hover {
+  background-color: #cddc39;
+}
+
+/* ==== USER SECTION ==== */
+.hdr-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.login-link {
+  background: #1b5e20;
+  padding: 8px 12px;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.login-link:hover {
+  background: #124516;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+.username {
+  font-weight: 700;
+}
+.logout {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid #ffffff55;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.logout:hover {
+  background: #ffffff22;
+}
+
+/* ==== BANNER ==== */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+.slider img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: none;
+}
+.slider img.active {
+  display: block;
+  transition: opacity 1s ease;
+}
+.dots {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff88;
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+/* ==== DANH SÁCH SẢN PHẨM ==== */
+.page-title {
+  text-align: center;
+  color: var(--green);
+  font-size: 2rem;
+  margin-top: 40px;
+}
+.page-sub {
+  text-align: center;
+  color: #777;
+  margin-bottom: 30px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 26px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+.item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.1);
+  text-align: center;
+  padding: 14px;
+  transition: transform .25s, box-shadow .25s;
+}
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+.thumb {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.name {
+  color: var(--green);
+  font-weight: 700;
+  margin: 12px 0 4px;
+}
+.price {
+  color: var(--pink);
+  font-weight: 700;
+  margin: 8px 0 16px;
+}
+
+/* ==== NÚT MUA ==== */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.btn {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: .25s;
+  border: 1px solid transparent;
+}
+.btn.cart {
+  background: var(--light-green);
+  color: var(--green);
+  border-color: var(--green);
+}
+.btn.cart:hover {
+  background: var(--green);
+  color: white;
+}
+.btn.buy {
+  background: var(--pink);
+  color: white;
+  border-color: var(--pink);
+}
+.btn.buy:hover {
+  background: #ad1457;
+}
+
+/* ==== SHARE BUTTONS ==== */
+.share-box {
+  margin-top: 12px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.share-box span {
+  color: #333;
+  font-weight: 600;
+}
+.share-box a img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+.share-box a:hover img {
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.copy-link {
+  color: #555;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color .3s;
+}
+.copy-link:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+/* ==== FOOTER ==== */
+.ftr {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.95rem;
+}
+.ftr a {
+  color: #ffeb3b;
+  text-decoration: none;
+}
+.ftr a:hover {
+  text-decoration: underline;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .hdr {
+    flex-direction: column;
+    text-align: center;
+  }
+  .search {
+    order: 3;
+    margin-top: 10px;
+  }
+  .username {
+    display: none;
+  }
+  .slider {
+    height: 200px;
+  }
+  .slider img {
+    height: 200px;
+  }
+  .thumb {
+    height: 160px;
+  }
+}

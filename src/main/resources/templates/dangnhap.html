@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- 🌿 SEO -->
+  <title>🌿 Đăng nhập | Thiên Nhiên Garden - Cây Cảnh & Hoa Tươi</title>
+  <meta name="description" content="Đăng nhập để tiếp tục mua cây cảnh, hoa tươi và phân bón tại Thiên Nhiên Garden.">
+  <meta name="keywords" content="đăng nhập, Thiên Nhiên Garden, cây cảnh, hoa tươi, cây phong thủy, phân bón, cây để bàn, cây văn phòng">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Nhóm Java Spring Boot">
+
+  <!-- 🌸 OPEN GRAPH -->
+  <meta property="og:title" content="Đăng nhập - Thiên Nhiên Garden">
+  <meta property="og:description" content="Đăng nhập để mua cây cảnh, hoa tươi và nhận nhiều ưu đãi hấp dẫn.">
+  <meta property="og:image" content="/images/banner2.jpg">
+  <meta property="og:url" content="http://localhost:8080/dangnhap">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+
+  <!-- 🌼 CSS -->
+  <link rel="stylesheet" th:href="@{/css/dangnhap.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 🪴 HEADER -->
+  <header class="hdr">
+    <div class="hdr-left">
+      <a href="/" class="logo">
+        <img src="/images/logo.jpg" alt="Logo Thiên Nhiên Garden" class="logo-img">
+        <h1>Thiên Nhiên Garden</h1>
+      </a>
+      <nav class="hnav">
+        <a href="/">Trang chủ</a>
+        <a href="/sanpham">Sản phẩm</a>
+        <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a>
+        <a href="/gioithieu">Giới thiệu</a>
+        <a href="/lienhe">Liên hệ</a>
+      </nav>
+    </div>
+
+    <form class="search" method="get" action="/sanpham">
+      <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+      <button type="submit">Tìm</button>
+    </form>
+
+    <div class="hdr-right">
+      <a th:if="${session.tenDangNhap == null}" href="/dangnhap" class="login-link active">Đăng nhập</a>
+      <div th:if="${session.tenDangNhap != null}" class="user-info">
+        <div class="avatar" th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+        <span class="username" th:text="${session.tenDangNhap}"></span>
+        <a href="/dangxuat" class="logout">Đăng xuất</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🌸 BANNER -->
+  <section class="slider">
+    <div class="slides">
+      <img src="/images/banner1.jpg" class="active" alt="Cây cảnh phong thủy">
+      <img src="/images/banner2.jpg" alt="Hoa tươi tặng người thân">
+      <img src="/images/banner3.jpg" alt="Phân bón & phụ kiện làm vườn">
+    </div>
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- 🌿 FORM ĐĂNG NHẬP -->
+  <section class="form-section">
+    <form class="form-container" th:action="@{/dangnhap}" method="post">
+      <h2>🌿 Đăng nhập tài khoản</h2>
+      <p class="subtitle">Chào mừng bạn quay lại với Thiên Nhiên Garden</p>
+
+      <p th:text="${error}" class="msg error"></p>
+
+      <input type="text" name="tenDangNhap" placeholder="Tên đăng nhập" required>
+      <input type="password" name="matKhau" placeholder="Mật khẩu" required>
+
+      <button type="submit">Đăng nhập</button>
+
+      <div class="link">
+        Chưa có tài khoản? <a th:href="@{/dangky}">Đăng ký ngay</a>
+      </div>
+    </form>
+  </section>
+
+  <!-- 🌱 FOOTER -->
+  <footer class="ftr">
+    © 2025 Thiên Nhiên Garden 🌱 | <a href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
+  </footer>
+
+  <!-- 🌸 SLIDER SCRIPT -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slides img');
+    const dots = document.querySelectorAll('.dot');
+    function showSlide(i) {
+      slides.forEach((img, n) => img.classList.toggle('active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('active', n === i));
+    }
+    function nextSlide() { index = (index + 1) % slides.length; showSlide(index); }
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { index = i; showSlide(index); }));
+    setInterval(nextSlide, 4000);
+  </script>
+</body>
+</html>

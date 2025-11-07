@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>🌿 Giới thiệu | Thiên Nhiên Garden - Cây Cảnh & Hoa Tươi</title>
+  <meta name="description" content="Khám phá hành trình và sứ mệnh của Thiên Nhiên Garden — thương hiệu mang sắc xanh và hương hoa đến từng mái nhà.">
+  <meta name="keywords" content="giới thiệu, Thiên Nhiên Garden, cây cảnh, hoa tươi, sống xanh, cây phong thủy, phân bón, phụ kiện trồng cây">
+  <meta name="author" content="Nhóm Java Spring Boot">
+
+  <!-- 🌿 SEO OPEN GRAPH -->
+  <meta property="og:title" content="Giới thiệu - Thiên Nhiên Garden">
+  <meta property="og:description" content="Thiên Nhiên Garden - Nơi khơi nguồn cảm hứng sống xanh.">
+  <meta property="og:image" content="/images/banner1.jpg">
+  <meta property="og:url" content="http://localhost:8080/gioithieu">
+  <meta property="og:type" content="website">
+
+  <!-- 🎨 CSS -->
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* 🌿 TOÀN TRANG */
+    body {
+      background: #f7f9f5;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* 🌿 BANNER GIỚI THIỆU */
+    .intro-banner {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: url('/images/banner2.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .intro-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+
+    .intro-banner h1 {
+      position: relative;
+      z-index: 2;
+      font-size: 2.8rem;
+      font-family: 'Parisienne', cursive;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* 🌿 SECTION TỔNG QUAN */
+    .about-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .about-section img {
+      width: 50%;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: transform .4s ease;
+    }
+
+    .about-section img:hover {
+      transform: scale(1.03);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      color: var(--green);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      line-height: 1.8;
+      color: #444;
+      font-size: 1.05rem;
+      text-align: justify;
+    }
+
+    /* 🌺 ẢNH TO + CHỮ ĐÈ */
+    .quote-block {
+      position: relative;
+      background: url('/images/senda4.jpg') center/cover fixed;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .quote-block::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .quote-block h2 {
+      position: relative;
+      z-index: 2;
+      font-family: 'Parisienne', cursive;
+      font-size: 2.2rem;
+      padding: 0 20px;
+    }
+
+    /* 🌸 GIÁ TRỊ CỐT LÕI */
+    .core-values {
+      background: #fff;
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    .core-values h2 {
+      color: var(--green);
+      font-size: 2rem;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .core-values h2::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--pink);
+      border-radius: 2px;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .value-item {
+      background: var(--light-green);
+      border-radius: 16px;
+      padding: 30px 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .value-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .value-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid var(--green);
+    }
+
+    .value-item h3 {
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .value-item p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* 🌱 CTA */
+    .cta-section {
+      background: linear-gradient(90deg, #43a047, #2e7d32);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: 'Parisienne', cursive;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-section a {
+      background: #ffeb3b;
+      color: var(--green);
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: .3s;
+    }
+
+    .cta-section a:hover {
+      background: #fff176;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .about-section { flex-direction: column; }
+      .about-section img { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="hdr-left">
+      <a href="/" class="logo">
+        <img src="/images/logo.jpg" alt="Logo Thiên Nhiên Garden" class="logo-img">
+        <h1>Thiên Nhiên Garden</h1>
+      </a>
+      <nav class="hnav">
+        <a href="/">Trang chủ</a>
+        <a href="/sanpham">Sản phẩm</a>
+        <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a>
+        <a href="/gioithieu" class="active">Giới thiệu</a>
+        <a href="/lienhe">Liên hệ</a>
+      </nav>
+    </div>
+
+    <form class="search" method="get" action="/sanpham">
+      <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+      <button type="submit">Tìm</button>
+    </form>
+
+    <div class="hdr-right">
+      <a th:if="${session.tenDangNhap == null}" href="/dangnhap" class="login-link">Đăng nhập</a>
+      <div th:if="${session.tenDangNhap != null}" class="user-info">
+        <div class="avatar" th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+        <span class="username" th:text="${session.tenDangNhap}"></span>
+        <a href="/dangxuat" class="logout">Đăng xuất</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🌿 BANNER -->
+  <section class="intro-banner">
+    <h1>Về chúng tôi - Thiên Nhiên Garden 🌿</h1>
+  </section>
+
+  <!-- 🌿 GIỚI THIỆU TỔNG QUAN -->
+  <section class="about-section">
+    <img src="/images/trangnguyen.jpg" alt="Cây Trạng Nguyên - biểu tượng may mắn">
+    <div class="about-text">
+      <h2>Hành trình mang thiên nhiên đến gần hơn</h2>
+      <p>Trong nhịp sống hiện đại đầy áp lực, Thiên Nhiên Garden ra đời với sứ mệnh 
+      mang đến không gian xanh – nơi con người được chạm vào sự bình yên. Chúng tôi 
+      tin rằng mỗi chậu cây, mỗi bông hoa đều là một món quà tinh thần giúp cân bằng 
+      cuộc sống và lan tỏa năng lượng tích cực.</p>
+    </div>
+  </section>
+
+  <!-- 🌸 ẢNH FULL WIDTH -->
+  <div class="quote-block">
+    <h2>“Sắc xanh không chỉ là màu của thiên nhiên – mà là nhịp thở của tâm hồn.”</h2>
+  </div>
+
+  <!-- 🌺 GIÁ TRỊ CỐT LÕI -->
+  <section class="core-values">
+    <h2>Giá trị cốt lõi của chúng tôi</h2>
+    <div class="value-grid">
+      <div class="value-item">
+        <img src="/images/senda4.jpg" alt="Chất lượng">
+        <h3>Chất lượng hàng đầu</h3>
+        <p>Mỗi sản phẩm đều được chọn lọc kỹ lưỡng, chăm sóc chu đáo và giao đến khách hàng với sự trân trọng nhất.</p>
+      </div>
+      <div class="value-item">
+        <img src="/images/tulip.jpg" alt="Tận tâm">
+        <h3>Tận tâm phục vụ</h3>
+        <p>Đội ngũ Thiên Nhiên Garden luôn đặt sự hài lòng của khách hàng lên hàng đầu trong mọi hành trình.</p>
+      </div>
+      <div class="value-item">
+        <img src="/images/xuongrong.jpg" alt="Sáng tạo">
+        <h3>Sáng tạo & cảm hứng</h3>
+        <p>Không chỉ là cửa hàng, chúng tôi là nguồn cảm hứng giúp bạn tạo nên góc sống xanh độc đáo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🌱 CTA -->
+  <section class="cta-section">
+    <h2>“Mang sắc xanh đến ngôi nhà bạn”</h2>
+    <p>Thiên Nhiên Garden – Nơi thiên nhiên gặp gỡ cảm xúc con người 🌸</p>
+    <a href="/sanpham">Khám phá sản phẩm</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    © 2025 Thiên Nhiên Garden 🌱 | <a href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
+  </footer>
+</body>
+</html>

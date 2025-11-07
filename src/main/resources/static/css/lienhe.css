@@ -1,0 +1,156 @@
+:root {
+  --green: #2e7d32;
+  --light-green: #e8f5e9;
+  --pink: #e91e63;
+  --yellow: #ffeb3b;
+  --bg: #f7f9f5;
+}
+
+/* ==== TOÀN TRANG ==== */
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--bg);
+  color: #333;
+  margin: 0;
+}
+
+/* ==== KHỐI LIÊN HỆ ==== */
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 80px 40px 100px;
+  gap: 40px;
+  background: var(--light-green);
+}
+
+/* ==== CARD CHUNG ==== */
+.contact-info, .contact-form {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  padding: 40px 50px;
+  flex: 1 1 420px;
+  transition: all .3s ease;
+}
+
+.contact-info:hover, .contact-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* ==== TIÊU ĐỀ ==== */
+.contact-info h2, .contact-form h2 {
+  color: var(--green);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==== THÔNG TIN LIÊN HỆ ==== */
+.contact-info p {
+  font-size: 1.05rem;
+  margin: 10px 0;
+}
+
+.contact-info a {
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact-info a:hover {
+  color: #1b5e20;
+  text-decoration: underline;
+}
+
+.social-links {
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.social-links a {
+  text-decoration: none;
+  font-weight: 700;
+  color: #333;
+  background: #f0f0f0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+/* ==== FORM ==== */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(46,125,50,0.15);
+}
+
+.contact-form button {
+  align-self: flex-start;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #388e3c;
+}
+
+/* ==== THÔNG BÁO ==== */
+.msg {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+.msg.success { background: #e8f5e9; color: #2e7d32; }
+.msg.error { background: #ffebee; color: #c62828; }
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 900px) {
+  .contact-section {
+    flex-direction: column;
+    padding: 60px 20px;
+  }
+  .contact-info, .contact-form {
+    flex: 1 1 100%;
+    padding: 30px 20px;
+  }
+  .contact-form button {
+    align-self: center;
+  }
+}

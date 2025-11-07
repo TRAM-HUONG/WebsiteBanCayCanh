@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- 🌿 SEO -->
+<title>🛒 Giỏ hàng | Thiên Nhiên Garden - Cây Cảnh & Hoa Tươi</title>
+<meta name="description"
+	content="Giỏ hàng Thiên Nhiên Garden - Xem lại cây cảnh, hoa tươi và sản phẩm bạn đã chọn. Cập nhật số lượng, thanh toán nhanh chóng và an toàn.">
+<meta name="keywords"
+	content="giỏ hàng, Thiên Nhiên Garden, cây cảnh, hoa tươi, mua cây cảnh online, phân bón, cây phong thủy, thanh toán">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Nhóm Java Spring Boot">
+
+<!-- 🌸 OPEN GRAPH -->
+<meta property="og:title" content="Giỏ hàng - Thiên Nhiên Garden">
+<meta property="og:description"
+	content="Giỏ hàng của bạn tại Thiên Nhiên Garden - nơi mua cây cảnh và hoa tươi chất lượng.">
+<meta property="og:image" content="/images/banner1.jpg">
+<meta property="og:url" content="http://localhost:8080/giohang">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+
+<!-- 🎨 CSS -->
+<link rel="stylesheet" th:href="@{/css/giohang.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
+</head>
+
+<body>
+	<!-- 🪴 HEADER -->
+	<header class="hdr">
+		<div class="hdr-left">
+			<a href="/" class="logo"> <img src="/images/logo.jpg"
+				alt="Logo Thiên Nhiên Garden" class="logo-img">
+				<h1>Thiên Nhiên Garden</h1>
+			</a>
+			<nav class="hnav">
+				<a href="/">Trang chủ</a> <a href="/sanpham">Sản phẩm</a> <a
+					th:href="@{/giohang(maKH=${session.maKH})}" class="active">Giỏ
+					hàng</a> <a href="/gioithieu">Giới thiệu</a> <a href="/lienhe">Liên
+					hệ</a>
+			</nav>
+		</div>
+
+		<div class="hdr-center">
+			<form class="search" method="get" action="/sanpham">
+				<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+				<button type="submit">Tìm</button>
+			</form>
+		</div>
+
+		<div class="hdr-right">
+			<a th:if="${session.tenDangNhap == null}" href="/dangnhap"
+				class="login-link">Đăng nhập</a>
+			<div th:if="${session.tenDangNhap != null}" class="user-info">
+				<div class="avatar"
+					th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+				<div class="user-text">
+					<span class="username" th:text="${session.tenDangNhap}"></span> <a
+						href="/dangxuat" class="logout">Đăng xuất</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+	<!-- 🌸 BANNER -->
+	<section class="slider">
+		<div class="slides">
+			<img src="/images/banner1.jpg" class="active"
+				alt="Cây cảnh phong thủy"> <img src="/images/banner2.jpg"
+				alt="Hoa tươi tặng người thân"> <img src="/images/banner3.jpg"
+				alt="Phân bón & phụ kiện làm vườn">
+		</div>
+		<div class="dots">
+			<span class="dot active"></span> <span class="dot"></span> <span
+				class="dot"></span>
+		</div>
+	</section>
+
+	<!-- 🌿 GIỎ HÀNG -->
+	<section class="cart-section">
+		<h2>
+			🛒 Giỏ hàng của <span th:text="${gioHang.khachHang.hoTen}"></span>
+		</h2>
+
+		<form th:action="@{/giohang/thanhtoan}" method="post"
+			class="payment-form">
+			<input type="hidden" name="maKH" th:value="${gioHang.khachHang.maKH}" />
+
+			<div class="cart-list">
+				<div class="cart-item" th:each="ct : ${chiTietList}">
+					<input type="checkbox" class="select-item" name="chonSP"
+						th:data-price="${ct.sanPham.donGia * ct.soLuong}"
+						th:value="${ct.sanPham.maSP}"> <img class="cart-img"
+						th:src="@{/images/{img}(img=${ct.sanPham.anhChinh})}"
+						alt="Ảnh sản phẩm">
+
+					<div class="cart-info">
+						<h3 th:text="${ct.sanPham.tenSP}"></h3>
+						<p class="price"
+							th:text="${#numbers.formatDecimal(ct.sanPham.donGia,0,'COMMA',0,'POINT')} + ' đ'"></p>
+
+						<div class="quantity">
+							<label>Số lượng:</label> <input type="number" name="soLuong"
+								min="1" th:value="${ct.soLuong}">
+						</div>
+
+						<p class="subtotal">
+							Thành tiền: <span
+								th:text="${#numbers.formatDecimal(ct.sanPham.donGia * ct.soLuong,0,'COMMA',0,'POINT')} + ' đ'"></span>
+						</p>
+					</div>
+
+					<a class="btn remove"
+						th:href="@{/giohang/xoa(maGH=${ct.gioHang.maGH}, maSP=${ct.sanPham.maSP}, maKH=${gioHang.khachHang.maKH})}">
+						❌ Xóa </a>
+				</div>
+			</div>
+
+			<div class="cart-summary">
+				<label><input type="checkbox" id="selectAll"> Chọn
+					tất cả</label>
+				<div class="total">
+					Tổng tiền: <span id="totalPrice">0 đ</span>
+				</div>
+			</div>
+
+			<div class="shipping">
+				<h3>🚚 Địa chỉ giao hàng</h3>
+				<input type="text" name="diaChiGiao"
+					placeholder="Nhập địa chỉ của bạn" required>
+			</div>
+
+			<div class="pay-method">
+				<h3>💳 Phương thức thanh toán</h3>
+				<select name="phuongThuc">
+					<option value="Tiền mặt khi nhận hàng">Tiền mặt khi nhận
+						hàng</option>
+					<option value="Chuyển khoản">Chuyển khoản ngân hàng</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn-buy-all">💚 Thanh toán sản
+				phẩm đã chọn</button>
+		</form>
+	</section>
+
+	<!-- 🌱 FOOTER -->
+	<footer class="ftr">
+		© 2025 Thiên Nhiên Garden 🌱 | <a
+			href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
+	</footer>
+
+	<!-- 🎞️ SCRIPT -->
+	<script>
+    // Banner
+    let index = 0;
+    const slides = document.querySelectorAll('.slides img');
+    const dots = document.querySelectorAll('.dot');
+    function showSlide(i) {
+      slides.forEach((img, n) => img.classList.toggle('active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('active', n === i));
+    }
+    function nextSlide() { index = (index + 1) % slides.length; showSlide(index); }
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { index = i; showSlide(index); }));
+    setInterval(nextSlide, 4000);
+
+    // Tính tổng tiền
+    const selectAll = document.getElementById('selectAll');
+    const checkboxes = document.querySelectorAll('.select-item');
+    const totalPriceEl = document.getElementById('totalPrice');
+    function updateTotal() {
+      let total = 0;
+      checkboxes.forEach(chk => {
+        if (chk.checked) total += parseFloat(chk.dataset.price || 0);
+      });
+      totalPriceEl.textContent = total.toLocaleString('vi-VN') + ' đ';
+    }
+    checkboxes.forEach(chk => chk.addEventListener('change', updateTotal));
+    if (selectAll) {
+      selectAll.addEventListener('change', e => {
+        checkboxes.forEach(chk => chk.checked = e.target.checked);
+        updateTotal();
+      });
+    }
+  </script>
+</body>
+</html>
