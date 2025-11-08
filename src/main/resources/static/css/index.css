@@ -339,7 +339,6 @@ body {
   text-decoration: underline;
 }
 
-/* ==== RESPONSIVE ==== */
 @media (max-width: 768px) {
   .hdr {
     flex-direction: column;
@@ -360,5 +359,10 @@ body {
   }
   .thumb {
     height: 170px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
   }
 }

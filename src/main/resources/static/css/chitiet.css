@@ -323,15 +323,30 @@ body {
 }
 
 /* ==== RESPONSIVE ==== */
-@media (max-width: 900px) {
-  .product-detail {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .hdr {
+    flex-direction: column;
     text-align: center;
   }
-  .slider {
-    height: 200px;
+  .search {
+    order: 3;
+    margin-top: 10px;
   }
-  .slider img {
-    height: 200px;
+  .username {
+    display: none;
+  }
+  .slider {
+    height: 220px;
+  }
+  .slides img {
+    height: 220px;
+  }
+  .thumb {
+    height: 170px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
   }
 }

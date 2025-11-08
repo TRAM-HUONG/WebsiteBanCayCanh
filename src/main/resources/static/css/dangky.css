@@ -279,13 +279,25 @@ button:hover {
     flex-direction: column;
     text-align: center;
   }
+  .search {
+    order: 3;
+    margin-top: 10px;
+  }
+  .username {
+    display: none;
+  }
   .slider {
-    height: 200px;
+    height: 220px;
   }
-  .slider img {
-    height: 200px;
+  .slides img {
+    height: 220px;
   }
-  .form-container {
-    width: 90%;
+  .thumb {
+    height: 170px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
   }
 }

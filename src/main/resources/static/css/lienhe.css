@@ -141,16 +141,30 @@ body {
 .msg.error { background: #ffebee; color: #c62828; }
 
 /* ==== RESPONSIVE ==== */
-@media (max-width: 900px) {
-  .contact-section {
+@media (max-width: 768px) {
+  .hdr {
     flex-direction: column;
-    padding: 60px 20px;
+    text-align: center;
   }
-  .contact-info, .contact-form {
-    flex: 1 1 100%;
-    padding: 30px 20px;
+  .search {
+    order: 3;
+    margin-top: 10px;
   }
-  .contact-form button {
-    align-self: center;
+  .username {
+    display: none;
+  }
+  .slider {
+    height: 220px;
+  }
+  .slides img {
+    height: 220px;
+  }
+  .thumb {
+    height: 170px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
   }
 }
