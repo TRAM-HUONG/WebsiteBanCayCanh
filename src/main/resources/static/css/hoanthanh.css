@@ -302,31 +302,61 @@ body {
   text-decoration: underline;
 }
 
-/* ==== RESPONSIVE ==== */
-@media (max-width: 768px) {
-  .hdr {
-    flex-direction: column;
-    text-align: center;
-  }
-  .search {
-    order: 3;
-    margin-top: 10px;
-  }
-  .username {
-    display: none;
-  }
-  .slider {
-    height: 220px;
-  }
-  .slides img {
-    height: 220px;
-  }
-  .thumb {
-    height: 170px;
-  }
 
-  .btn {
-    padding: 12px 24px;
-    font-size: 1.2rem;
-  }
+@media ( max-width : 768px) {
+	.hdr {
+		flex-direction: column;
+		text-align: center;
+	}
+	.search {
+		order: 3;
+		margin-top: 10px;
+	}
+	.username {
+		display: none;
+	}
+	.slider {
+		height: 220px;
+	}
+	.slides img {
+		height: 220px;
+	}
+	.thumb {
+		height: 170px;
+	}
+	.btn {
+		padding: 12px 24px;
+		font-size: 1.2rem;
+	}
+	/* Cập nhật lại phần menu */
+	.hnav {
+		display: flex;
+		justify-content: center;
+		flex: 1;
+		gap: 28px;
+		flex-wrap: wrap;
+		/* Cho phép các phần tử trong menu gói lại khi không đủ không gian */
+	}
+	.hnav a {
+		color: white;
+		text-decoration: none;
+		font-weight: 600;
+		transition: 0.25s;
+		white-space: nowrap; /* Ngăn không cho chữ xuống dòng */
+		padding: 10px 15px; /* Cung cấp thêm không gian cho các liên kết */
+	}
+	.hnav a:hover, .hnav a.active {
+		color: var(--yellow);
+		text-shadow: 0 0 6px rgba(255, 255, 0, 0.5);
+	}
+	.logo-img {
+		width: 45px;
+		height: 45px;
+	}
+	.logo h1 {
+		font-size: 24px;
+	}
+	.hdr-right {
+		display: none; /* Ẩn thông tin người dùng khi xem trên điện thoại */
+	}
 }
