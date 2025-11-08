@@ -365,4 +365,34 @@ body {
     padding: 12px 24px;
     font-size: 1.2rem;
   }
+
+  /* Cập nhật lại thanh menu */
+  .hnav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hnav a {
+    font-size: 1.1rem;
+    padding: 10px 0;
+  }
+
+  .hdr-left {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .logo-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logo h1 {
+    font-size: 24px;
+  }
+
+  .hdr-right {
+    display: none; /* Ẩn thông tin người dùng khi xem trên điện thoại */
+  }
 }
