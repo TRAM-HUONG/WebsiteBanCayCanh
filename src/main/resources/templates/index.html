@@ -44,25 +44,21 @@
 				<h1>Thiên Nhiên Garden</h1>
 			</a>
 			<nav class="hnav">
-				<a href="/" class="active">Trang chủ</a> <a href="/sanpham">Sản
-					phẩm</a> <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a> <a
-					href="/gioithieu">Giới thiệu</a> <a href="/lienhe">Liên hệ</a>
+				<a href="/" class="active">Trang chủ</a> <a href="/sanpham">Sản phẩm</a> 
+				<a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a> 
+				<a href="/gioithieu">Giới thiệu</a> <a href="/lienhe">Liên hệ</a>
 			</nav>
 		</div>
-
 		<form class="search" method="get" action="/sanpham">
 			<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
 			<button type="submit">Tìm</button>
 		</form>
-
 		<div class="hdr-right">
 			<a th:if="${session.tenDangNhap == null}" href="/dangnhap"
 				class="login-link">Đăng nhập</a>
 			<div th:if="${session.tenDangNhap != null}" class="user-info">
-				<div class="avatar"
-					th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
-				<span class="username" th:text="${session.tenDangNhap}"></span> <a
-					href="/dangxuat" class="logout">Đăng xuất</a>
+				<div class="avatar" th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+				<span class="username" th:text="${session.tenDangNhap}"></span> <a href="/dangxuat" class="logout">Đăng xuất</a>
 			</div>
 		</div>
 	</header>
