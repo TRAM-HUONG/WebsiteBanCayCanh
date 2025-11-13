@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}"
+      lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title layout:title="Trang chủ | Thiên Nhiên Garden">🌿 Trang chủ | Thiên Nhiên Garden</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+<section layout:fragment="content">
+    <!-- 🌿 GIỚI THIỆU -->
+    <section class="intro">
+        <h2>🌸 Thiên Nhiên Garden 🌿</h2>
+        <p>
+            Nơi mang sắc xanh thiên nhiên đến ngôi nhà của bạn. Khám phá những 
+            <strong>cây cảnh phong thủy</strong>, 
+            <strong>hoa tươi rực rỡ</strong> và 
+            <strong>phân bón chất lượng cao</strong> giúp không gian thêm sinh động và may mắn.
+        </p>
+    </section>
+
+    <!-- 🪴 SẢN PHẨM NỔI BẬT -->
+    <h2 class="page-title">Sản phẩm nổi bật</h2>
+    <p class="page-sub">Cây cảnh, hoa tươi, cây mini – lựa chọn hoàn hảo cho mọi không gian sống.</p>
+
+    <section class="grid">
+        <article class="item" th:each="sp : ${sanPhamNoiBat}">
+            <a th:href="@{'/sanpham/chi-tiet/' + ${sp.maSP}}">
+                <img class="thumb" th:src="@{'/images/' + ${sp.anhChinh}}" th:alt="${sp.tenSP}">
+            </a>
+            <h3 class="name" th:text="${sp.tenSP}">Tên sản phẩm</h3>
+            <div class="price" th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')} + ' đ'">0 đ</div>
+            
+            <div class="btn-group">
+                <form th:action="@{/giohang/them}" method="post">
+                    <input type="hidden" name="maSP" th:value="${sp.maSP}">
+                    <input type="hidden" name="maKH" th:value="${session.maKH}">
+                    <input type="hidden" name="soLuong" value="1">
+                    <button type="submit" class="btn cart">🛒 Thêm giỏ</button>
+                </form>
+                <form th:action="@{/giohang/muangay}" method="post">
+                    <input type="hidden" name="maSP" th:value="${sp.maSP}">
+                    <input type="hidden" name="maKH" th:value="${session.maKH}">
+                    <input type="hidden" name="soLuong" value="1">
+                    <button type="submit" class="btn buy">⚡ Mua ngay</button>
+                </form>
+            </div>
+
+            <div class="share-box">
+                <span>Chia sẻ:</span>
+                <a th:href="'https://www.facebook.com/sharer/sharer.php?u=https://websitecaycanh.onrender.com/sanpham/chi-tiet/' + ${sp.maSP}" target="_blank">
+                    <img src="/images/icon_fb.png" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/upload?lang=vi-VN" target="_blank">
+                    <img src="/images/icon_tiktok.png" alt="TikTok">
+                </a>
+                <span class="copy-link" th:data-url="'https://websitecaycanh.onrender.com/sanpham/chi-tiet/' + ${sp.maSP}" onclick="copyLink(this)">📋 Sao chép link</span>
+            </div>
+        </article>
+    </section>
+
+    <div th:if="${#lists.isEmpty(sanPhamNoiBat)}" style="text-align:center; margin:20px;">
+        Chưa có sản phẩm nổi bật để hiển thị.
+    </div>
+
+    <script>
+        function copyLink(el) {
+            const url = el.getAttribute("data-url");
+            navigator.clipboard.writeText(url);
+            alert("✅ Đã sao chép liên kết sản phẩm:\n" + url);
+        }
+    </script>
+</section>
+</body>
+</html>

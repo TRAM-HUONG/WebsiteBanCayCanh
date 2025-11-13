@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description"
+	content="Website bán cây cảnh, hoa tươi, phân bón và phụ kiện làm vườn. Giao hàng toàn quốc, cây đẹp, giá tốt.">
+<meta name="keywords"
+    content="
+    cây cảnh, hoa tươi, cây phong thủy, cây kim ngân, cây phú quý, phân bón, cây để bàn, cây văn phòng,
+    cây cảnh để bàn làm việc, cây cảnh hợp phong thủy theo mệnh, hoa tươi giao nhanh, cây cảnh giá rẻ,
+    mua cây cảnh online, shop cây cảnh uy tín, các loại phân bón cho cây cảnh, đất trồng và dinh dưỡng cho cây,
+    cây lọc không khí trong nhà, cây trang trí phòng khách">
+
+<meta name="author" content="Nhóm Java Spring Boot">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title"
+	content="Thiên Nhiên Garden - Cây cảnh & Hoa tươi">
+<meta property="og:description"
+	content="Khám phá cây cảnh phong thủy, hoa tươi và phân bón chất lượng cao.">
+<meta property="og:image" content="/images/banner1.jpg">
+<meta property="og:url" content="https://websitecaycanh.onrender.com/">
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-WRE8MBQ5W6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRE8MBQ5W6');
+</script>
+
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
+</head>
+
+<body>
+	<!-- 🌿 HEADER -->
+	<header class="hdr">
+		<div class="hdr-left">
+			<a href="/" class="logo"> <img src="/images/logo.jpg"
+				alt="Logo Thiên Nhiên Garden" class="logo-img">
+				<h1>Thiên Nhiên Garden</h1>
+			</a>
+			<nav class="hnav">
+				<a href="/" class="active">Trang chủ</a> <a href="/sanpham">Sản
+					phẩm</a> <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a> <a
+					href="/gioithieu">Giới thiệu</a> <a href="/lienhe">Liên hệ</a>
+			</nav>
+		</div>
+		<form class="search" method="get" action="/sanpham">
+			<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+			<button type="submit">Tìm</button>
+		</form>
+		<div class="hdr-right">
+			<a th:if="${session.tenDangNhap == null}" href="/dangnhap"
+				class="login-link">Đăng nhập</a>
+			<div th:if="${session.tenDangNhap != null}" class="user-info">
+				<div class="avatar"
+					th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
+				<span class="username" th:text="${session.tenDangNhap}"></span> <a
+					href="/dangxuat" class="logout">Đăng xuất</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- 🌸 BANNER -->
+	<section class="slider">
+		<div class="slides">
+			<img src="/images/banner1.jpg" class="active"
+				alt="Cây cảnh phong thủy"> <img src="/images/banner2.jpg"
+				alt="Hoa tươi rực rỡ"> <img src="/images/banner3.jpg"
+				alt="Phụ kiện làm vườn">
+		</div>
+		<div class="dots">
+			<span class="dot active"></span> <span class="dot"></span> <span
+				class="dot"></span>
+		</div>
+	</section>
+  <section layout:fragment="content" class="container-fluid"></section>
+	<footer class="footer">
+    <div class="footer-container">
+
+      
+        <div class="footer-col">
+            <h3>🌿 Thiên Nhiên Garden</h3>
+            <p>Cung cấp cây cảnh, hoa tươi và phụ kiện làm vườn chất lượng cao. 
+               Giao hàng toàn quốc – Uy tín – Nhanh chóng – Giá tốt.</p>
+        </div>
+
+   
+        <div class="footer-col">
+            <h4>Liên kết nhanh</h4>
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/sanpham">Sản phẩm</a></li>
+                <li><a href="/gioithieu">Giới thiệu</a></li>
+                <li><a href="/lienhe">Liên hệ</a></li>
+            </ul>
+        </div>
+
+      
+        <div class="footer-col">
+            <h4>Kết nối với chúng tôi</h4>
+            <a href="https://www.facebook.com/share/1aZn54sAnr/" target="_blank" class="fb-btn">
+                🌐 Fanpage Facebook
+            </a>
+
+            <p class="mail">
+                📧 Email:
+                <a href="mailto:nguyentramhuong22@gmail.com">
+                    nguyentramhuong22@gmail.com
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Thiên Nhiên Garden 🌱 
+    </div>
+</footer>
+	<script>
+// Slider banner
+    let index = 0;
+    const slides = document.querySelectorAll('.slides img');
+    const dots = document.querySelectorAll('.dot');
+    function showSlide(i) {
+      slides.forEach((img, n) => img.classList.toggle('active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('active', n === i));
+    }
+    function nextSlide() { index = (index + 1) % slides.length; showSlide(index); }
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { index = i; showSlide(index); }));
+    setInterval(nextSlide, 4000);
+  </script>
+</body>
+</html>

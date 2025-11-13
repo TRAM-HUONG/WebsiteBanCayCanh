@@ -1,92 +1,18 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<!-- 🌿 SEO -->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}"
+      lang="vi">
+      <head>
 <title
 	th:text="${sp.tenSP} + ' | Thiên Nhiên Garden - Cây Cảnh & Hoa Tươi'">Chi
 	tiết sản phẩm</title>
-<meta name="description" th:content="${sp.moTa}">
-<meta name="keywords"
-	content="cây cảnh, hoa tươi, cây phong thủy, cây để bàn, cây văn phòng, phân bón, Thiên Nhiên Garden">
-<meta name="author" content="Nhóm Java Spring Boot">
-
-<!-- 🌸 OPEN GRAPH -->
-<meta property="og:type" content="product">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:site_name" content="Thiên Nhiên Garden">
-<meta property="og:title" th:content="${sp.tenSP}">
-<meta property="og:description" th:content="${sp.moTa}">
-<meta property="og:image"
-	th:content="@{'http://localhost:8080/images/' + ${sp.anhChinh}}">
-<meta property="og:url"
-	th:content="@{'http://localhost:8080/sanpham/chi-tiet/' + ${sp.maSP}}">
-<!-- Google tag (gtag.js) -->
-<script async
-	src="https://www.googletagmanager.com/gtag/js?id=G-WRE8MBQ5W6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-WRE8MBQ5W6');
-</script>
-<!-- ✅ CSS -->
-<link rel="stylesheet" th:href="@{/css/chitiet.css}">
-<link
-	href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
-	rel="stylesheet">
+	    <link rel="stylesheet" th:href="@{/css/chitiet.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 
 <body>
-	<!-- ==== HEADER ==== -->
-	<header class="hdr">
-		<div class="hdr-left">
-			<a href="/" class="logo"> <img src="/images/logo.jpg"
-				alt="Logo Thiên Nhiên Garden" class="logo-img">
-				<h1>Thiên Nhiên Garden</h1>
-			</a>
-			<nav class="hnav">
-				<a href="/">Trang chủ</a> <a href="/sanpham" class="active">Sản
-					phẩm</a> <a th:href="@{/giohang(maKH=${session.maKH})}">Giỏ hàng</a> <a
-					href="/gioithieu">Giới thiệu</a> <a href="/lienhe">Liên hệ</a>
-			</nav>
-		</div>
-
-		<form class="search" method="get" action="/sanpham">
-			<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
-			<button type="submit">Tìm</button>
-		</form>
-
-		<div class="hdr-right">
-			<a th:if="${session.tenDangNhap == null}" href="/dangnhap"
-				class="login-link">Đăng nhập</a>
-			<div th:if="${session.tenDangNhap != null}" class="user-info">
-				<div class="avatar"
-					th:text="${#strings.substring(session.tenDangNhap,0,1).toUpperCase()}"></div>
-				<span class="username" th:text="${session.tenDangNhap}"></span> <a
-					href="/dangxuat" class="logout">Đăng xuất</a>
-			</div>
-		</div>
-	</header>
-
-	<!-- ==== BANNER ==== -->
-	<section class="slider">
-		<div class="slides">
-			<img src="/images/banner1.jpg" class="active"
-				alt="Cây cảnh phong thủy"> <img src="/images/banner2.jpg"
-				alt="Hoa tươi tặng người thân"> <img src="/images/banner3.jpg"
-				alt="Phân bón & phụ kiện làm vườn">
-		</div>
-		<div class="dots">
-			<span class="dot active"></span> <span class="dot"></span> <span
-				class="dot"></span>
-		</div>
-	</section>
-
-	<!-- ==== CHI TIẾT SẢN PHẨM ==== -->
+<section layout:fragment="content">
 	<section class="product-detail">
 		<div class="gallery">
 			<img id="mainImage" class="main-img"
@@ -134,13 +60,6 @@
 			</div>
 		</div>
 	</section>
-
-	<!-- ==== FOOTER ==== -->
-	<footer class="ftr">
-		© 2025 Thiên Nhiên Garden 🌱 | <a
-			href="mailto:nguyentramhuong22@gmail.com">Liên hệ</a>
-	</footer>
-
 	<!-- ==== SCRIPT ==== -->
 	<script>
     // Đổi ảnh chính
@@ -166,18 +85,7 @@
       const encoded = encodeURIComponent(link);
       window.open("https://www.tiktok.com/upload?lang=vi-VN&url=" + encoded, "_blank", "width=800,height=600");
     }
-
-    // Slide banner
-    let index = 0;
-    const slides = document.querySelectorAll('.slides img');
-    const dots = document.querySelectorAll('.dot');
-    function showSlide(i){
-      slides.forEach((img,n)=>img.classList.toggle('active',n===i));
-      dots.forEach((d,n)=>d.classList.toggle('active',n===i));
-    }
-    function nextSlide(){index=(index+1)%slides.length;showSlide(index);}
-    dots.forEach((dot,i)=>dot.addEventListener('click',()=>{index=i;showSlide(index);}));
-    setInterval(nextSlide,4000);
   </script>
+  </section>
 </body>
 </html>
