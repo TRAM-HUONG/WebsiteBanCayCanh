@@ -17,17 +17,15 @@ public class TrangChuController {
 
     @GetMapping("/")
     public String trangChu(Model model) {
-        // Lấy 4 sản phẩm đầu tiên (hoặc ít hơn nếu database nhỏ)
         List<SanPham> sanPhamNoiBat = sanPhamRepo.findAll()
                                                  .stream()
                                                  .limit(3)
                                                  .toList();
         model.addAttribute("sanPhamNoiBat", sanPhamNoiBat);
-        return "index"; // templates/index.html
+        return "trangchu/index";
     }
     @GetMapping("/gioithieu")
     public String gioiThieu() {
-        return "gioithieu"; // Trả về file gioithieu.html trong /templates
+        return "gioithieu"; 
     }
-
 }
