@@ -12,7 +12,7 @@
 	<groupId>com.bancaycanh</groupId>
 	<artifactId>WebsiteBanCayCanh</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>WebsiteBanCayCanh</name>
 	<description>Website bán cây cảnh và hoa tươi sử dụng Spring Boot</description>
@@ -84,18 +84,6 @@
 
 
 	<build>
-	<resources>
-    <resource>
-        <directory>src/main/resources</directory>
-        <includes>
-            <include>**/*.html</include>
-            <include>**/*.css</include>
-            <include>**/*.js</include>
-            <include>**/*.properties</include>
-            <include>**/*.yml</include>
-        </includes>
-    </resource>
-</resources>
 
 		<plugins>
 			<plugin>
