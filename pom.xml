@@ -12,7 +12,8 @@
 	<groupId>com.bancaycanh</groupId>
 	<artifactId>WebsiteBanCayCanh</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
+
 
 	<name>WebsiteBanCayCanh</name>
 	<description>Website bán cây cảnh và hoa tươi sử dụng Spring Boot</description>
