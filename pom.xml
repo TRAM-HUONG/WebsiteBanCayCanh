@@ -83,6 +83,19 @@
 
 
 	<build>
+	<resources>
+    <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+            <include>**/*.html</include>
+            <include>**/*.css</include>
+            <include>**/*.js</include>
+            <include>**/*.properties</include>
+            <include>**/*.yml</include>
+        </includes>
+    </resource>
+</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
